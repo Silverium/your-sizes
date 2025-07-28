@@ -3,15 +3,18 @@ import { StyleSheet } from 'react-native';
 
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { useI18nContext } from '@/src/i18n/i18n-react';
 
 export default function NotFoundScreen() {
+  const { LL } = useI18nContext()
+
   return (
     <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
+      <Stack.Screen options={{ title: LL.oops() }} />
       <ThemedView style={styles.container}>
-        <ThemedText type="title">This screen doesn't exist.</ThemedText>
+        <ThemedText type="title">{LL.screenDoesNotExist()}</ThemedText>
         <Link href="/" style={styles.link}>
-          <ThemedText type="link">Go to home screen!</ThemedText>
+          <ThemedText type="link">{LL.goHome()}</ThemedText>
         </Link>
       </ThemedView>
     </>
