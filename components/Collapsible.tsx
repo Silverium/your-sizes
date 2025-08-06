@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { ThemedText } from '@/components/ThemedText';
@@ -8,8 +8,8 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useBoolean } from 'usehooks-ts';
 
-export function Collapsible({ children, title }: PropsWithChildren & { title: string }) {
-  const {value:isOpen, toggle: toggleIsOpen} = useBoolean(false);
+export function Collapsible({ children, title }: PropsWithChildren<{ title: string }>) {
+  const { value: isOpen, toggle: toggleIsOpen } = useBoolean(false);
   const theme = useColorScheme() ?? 'light';
 
   return (
