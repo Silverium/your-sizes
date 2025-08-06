@@ -1,4 +1,3 @@
-import type { Translation } from '../i18n-types'
 
 const es = {
 	// this is an example Translation, just rename or delete this folder if you want
@@ -10,6 +9,6 @@ const es = {
 	createdBy: 'Creado por <>Soldeplata!!<>',
 	profile: 'Perfil',
 	screenDoesNotExist: 'Esta pantalla no existe.',
-} satisfies Translation
+} 
 
 export default es

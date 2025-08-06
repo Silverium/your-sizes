@@ -4,11 +4,10 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { ExternalLink } from '@/components/ExternalLink';
-import { useI18nContext } from '@/src/i18n/i18n-react';
+import i18n from '@/src/i18n';
 import { WrapTranslation } from '@/components/WrapTranslation';
 
 export default function HomeScreen() {
-  const { LL } = useI18nContext()
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -19,7 +18,7 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">{LL.appName()}</ThemedText>
+        <ThemedText type="title">{i18n.t('appName')}</ThemedText>
       </ThemedView>
 
       <ThemedView style={styles.stepContainer} lightColor='#c8d624' darkColor='#054d62'>
@@ -27,7 +26,7 @@ export default function HomeScreen() {
 
           <ThemedText>
             <WrapTranslation
-              message={LL.createdBy()}
+              message={i18n.t('createdBy')}
               renderComponent={(infix) => <ExternalLink href='https://www.soldeplata.dev'><ThemedText type="link">{infix}</ThemedText></ExternalLink>} /> </ThemedText>
         </ThemedText>
       </ThemedView>

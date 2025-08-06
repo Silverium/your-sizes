@@ -1,4 +1,3 @@
-import type { BaseTranslation } from '../i18n-types'
 
 const en = {
 	// TODO: your translations go here
@@ -10,6 +9,6 @@ const en = {
 	createdBy: 'Created by <>Soldeplata!!<>',
 	profile: 'Profile',
 	screenDoesNotExist: 'This screen doesn\'t exist.',
-} satisfies BaseTranslation
+}
 
 export default en

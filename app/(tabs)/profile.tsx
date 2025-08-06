@@ -2,10 +2,9 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { IconSymbol } from "@/components/ui/IconSymbol";
-import { useI18nContext } from "@/src/i18n/i18n-react";
+import i18n from '@/src/i18n';
 
 export default function ProfileTab() {
-	  const { LL } = useI18nContext()
 
 	return (
 		<ParallaxScrollView
@@ -18,7 +17,7 @@ export default function ProfileTab() {
 				/>
 			}>
 			<ThemedView>
-				<ThemedText type="title">{LL.profile()}</ThemedText>
+				<ThemedText type="title">{i18n.t('profile')}</ThemedText>
 			</ThemedView>
 		</ParallaxScrollView>
 	);

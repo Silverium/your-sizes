@@ -1,20 +1,19 @@
-import { LocalizedString } from 'typesafe-i18n'
 
 // create a component that handles the translated message
 
 interface WrapTranslationPropsType {
-   message: LocalizedString,
-   renderComponent: (messagePart: LocalizedString) => JSX.Element
+   message: string,
+   renderComponent: (messagePart: string) => JSX.Element
 }
 
 export function WrapTranslation({ message, renderComponent }: WrapTranslationPropsType) {
    // define a split character, in this case '<>'
-   let [prefix, infix, postfix] = message.split('<>') as LocalizedString[]
+   let [prefix, infix, postfix] = message.split('<>')
 
    // render infix only if the message doesn't have any split characters
    if (!infix && !postfix) {
       infix = prefix
-      prefix = '' as LocalizedString
+      prefix = ''
    }
 
    return <>
