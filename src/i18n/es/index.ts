@@ -9,6 +9,8 @@ const es = {
 	createdBy: 'Creado por <>Soldeplata!!<>',
 	profile: 'Perfil',
 	screenDoesNotExist: 'Esta pantalla no existe.',
-} 
+	submit: 'Enviar',
+	enterName: 'Introduce tu nombre',
+}
 
 export default es
