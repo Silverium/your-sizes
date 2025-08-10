@@ -7,8 +7,23 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 import i18n from '@/src/i18n';
 import { useState } from "react";
 
+import { loadItem } from "@/utils/loadItem";
+import { saveItem } from "@/utils/saveItem";
+import { useEffect } from "react";
+const mainUserNameKey = 'mainUserName'
+
 export default function ProfileTab() {
 	const [newUserName, setNewUserName] = useState('');
+
+	useEffect(() => {
+		const loadUserName = async () => {
+			const userName = await loadItem<string>(mainUserNameKey);
+			if (userName) {
+				setNewUserName(userName);
+			}
+		};
+		loadUserName();
+	}, []);
 
 	return (
 		<ParallaxScrollView
@@ -22,7 +37,6 @@ export default function ProfileTab() {
 			}>
 			<ThemedView>
 				<ThemedText type="title">{i18n.t('profile')}</ThemedText>
-				<ThemedText type="default">{newUserName}</ThemedText>
 				<ThemedTextInput
 					value={newUserName}
 					onChangeText={setNewUserName}
@@ -30,7 +44,10 @@ export default function ProfileTab() {
 				/>
 
 				<ThemedButton title={i18n.t('submit')} onPress={() => {
-					// TODO: save name locally
+					saveItem(mainUserNameKey, newUserName)
+						.catch((error) => {
+							console.error('Error saving name:', error);
+						});
 				}} />
 			</ThemedView>
 		</ParallaxScrollView>
