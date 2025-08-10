@@ -66,6 +66,8 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		minHeight: 44,
+		marginVertical: 4,
+		maxWidth: 200,
 	},
 	text: {
 		fontSize: 16,

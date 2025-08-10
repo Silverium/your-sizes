@@ -12,10 +12,14 @@ export function ThemedTextInput({
 	lightColor,
 	darkColor,
 	type = 'default',
+	editable = true,
 	...rest
 }: ThemedTextInputProps) {
 	const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
-	const backgroundColor = useThemeColor({ light: '#fff', dark: '#222' }, 'background');
+	const editableBackgroundColor = useThemeColor({ light: '#fff', dark: '#222' }, 'background');
+	const backgroundColor = editable ? editableBackgroundColor : 'transparent';
+
+	const borderStyle = editable ? styles.withBorder : styles.noBorder;
 
 	return (
 		<TextInput
@@ -25,9 +29,11 @@ export function ThemedTextInput({
 				type === 'title' ? styles.title : undefined,
 				type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
 				type === 'subtitle' ? styles.subtitle : undefined,
+				borderStyle,
 				style,
 			]}
 			placeholderTextColor={color}
+			editable={editable}
 			{...rest}
 		/>
 	);
@@ -39,8 +45,6 @@ const styles = StyleSheet.create({
 		lineHeight: 24,
 		padding: 10,
 		borderRadius: 6,
-		borderWidth: 1,
-		borderColor: '#ccc',
 	},
 	defaultSemiBold: {
 		fontSize: 16,
@@ -48,8 +52,6 @@ const styles = StyleSheet.create({
 		fontWeight: '600',
 		padding: 10,
 		borderRadius: 6,
-		borderWidth: 1,
-		borderColor: '#ccc',
 	},
 	title: {
 		fontSize: 32,
@@ -57,15 +59,19 @@ const styles = StyleSheet.create({
 		lineHeight: 32,
 		padding: 10,
 		borderRadius: 6,
-		borderWidth: 1,
-		borderColor: '#ccc',
 	},
 	subtitle: {
 		fontSize: 20,
 		fontWeight: 'bold',
 		padding: 10,
 		borderRadius: 6,
+	},
+	withBorder: {
 		borderWidth: 1,
 		borderColor: '#ccc',
+	},
+	noBorder: {
+		borderWidth: 1,
+		borderColor: 'transparent',
 	},
 });
