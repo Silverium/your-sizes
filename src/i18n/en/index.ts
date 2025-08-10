@@ -11,6 +11,8 @@ const en = {
 	screenDoesNotExist: 'This screen doesn\'t exist.',
 	submit: 'Submit',
 	enterName: 'Enter your name',
+	edit: 'Edit',
+	cancel: 'Cancel',
 }
 
 export default en

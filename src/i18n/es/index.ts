@@ -11,6 +11,8 @@ const es = {
 	screenDoesNotExist: 'Esta pantalla no existe.',
 	submit: 'Enviar',
 	enterName: 'Introduce tu nombre',
+	edit: 'Editar',
+	cancel: 'Cancelar',
 }
 
 export default es
