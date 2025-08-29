@@ -1,5 +1,5 @@
 import type { PropsWithChildren, ReactElement } from 'react';
-import { StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 import Animated, {
   interpolate,
   useAnimatedRef,
@@ -46,21 +46,27 @@ export default function ParallaxScrollView({
 
   return (
     <ThemedView style={styles.container}>
-      <Animated.ScrollView
-        ref={scrollRef}
-        scrollEventThrottle={16}
-        scrollIndicatorInsets={{ bottom }}
-        contentContainerStyle={{ paddingBottom: bottom }}>
-        <Animated.View
-          style={[
-            styles.header,
-            { backgroundColor: headerBackgroundColor[colorScheme] },
-            headerAnimatedStyle,
-          ]}>
-          {headerImage}
-        </Animated.View>
-        <ThemedView style={styles.content}>{children}</ThemedView>
-      </Animated.ScrollView>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+      >
+        <Animated.ScrollView
+          ref={scrollRef}
+          scrollEventThrottle={16}
+          scrollIndicatorInsets={{ bottom }}
+          contentContainerStyle={{ paddingBottom: bottom }}>
+          <Animated.View
+            style={[
+              styles.header,
+              { backgroundColor: headerBackgroundColor[colorScheme] },
+              headerAnimatedStyle,
+            ]}>
+            {headerImage}
+          </Animated.View>
+          <ThemedView style={styles.content}>{children}</ThemedView>
+        </Animated.ScrollView>
+      </KeyboardAvoidingView>
     </ThemedView>
   );
 }
