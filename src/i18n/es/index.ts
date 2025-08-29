@@ -13,6 +13,36 @@ const es = {
 	enterName: 'Introduce tu nombre',
 	edit: 'Editar',
 	cancel: 'Cancelar',
+	name: 'Nombre',
+	height: 'Altura',
+	weight: 'Peso',
+	waist: 'Cintura',
+	foot: 'Pie',
+	head: 'Cabeza',
+	hips: 'Caderas',
+	chest: 'Pecho',
+	sleeve: 'Manga',
+	shoulder: 'Hombro',
+	thigh: 'Muslo',
+	inseam: 'Tiro',
+	enterHeight: 'Introduce tu altura',
+	enterWeight: 'Introduce tu peso',
+	enterWaist: 'Introduce tu cintura',
+	enterFoot: 'Introduce tu pie',
+	enterHead: 'Introduce tu cabeza',
+	enterHips: 'Introduce tus caderas',
+	enterChest: 'Introduce tu pecho',
+	enterSleeve: 'Introduce tu manga',
+	enterShoulder: 'Introduce tu hombro',
+	enterThigh: 'Introduce tu muslo',
+	enterInseam: 'Introduce tu tiro',
+	numberOnly: 'Por favor, introduce un número válido',
+	stringMaxLength: 'Por favor, utiliza {{count}} caracteres como máximo',
+	stringMinLength: {
+		one:'Por favor, utiliza al menos {{count}} carácter',
+		other:'Por favor, utiliza al menos {{count}} caracteres'
+	},
+	fieldRequired: 'Este campo es obligatorio'
 }
 
 export default es
