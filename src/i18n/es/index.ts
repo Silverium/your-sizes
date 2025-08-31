@@ -42,7 +42,10 @@ const es = {
 		one:'Por favor, utiliza al menos {{count}} carácter',
 		other:'Por favor, utiliza al menos {{count}} caracteres'
 	},
-	fieldRequired: 'Este campo es obligatorio'
+	fieldRequired: 'Este campo es obligatorio',
+	gender: 'Género',
+	male: 'Masculino',
+	female: 'Femenino'
 }
 
 export default es

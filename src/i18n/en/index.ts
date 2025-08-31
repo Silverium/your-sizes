@@ -39,7 +39,10 @@ const en = {
 	numberOnly: 'Please enter a valid number',
 	stringMaxLength: 'Please use {{count}} characters tops',
 	stringMinLength: {one:'Please use at least {{count}} character', other:'Please use at least {{count}} characters'},
-	fieldRequired: 'This field is required'
+	fieldRequired: 'This field is required',
+	gender: 'Gender',
+	male: 'Male',
+	female: 'Female'
 }
 
 export default en
