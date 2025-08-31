@@ -1,5 +1,6 @@
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedButton } from "@/components/ThemedButton";
+import { ThemedDropdown } from "@/components/ThemedDropdown";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedTextInput } from "@/components/ThemedTextInput";
 import { ThemedView } from "@/components/ThemedView";
@@ -118,6 +119,15 @@ export default function ProfileTab() {
 				placeholder={i18n.t('enterName')}
 				editable={isEditing}
 				control={control}
+			/>
+			<ThemedDropdown items={[
+				{ label: i18n.t('male'), value: 'male' },
+				{ label: i18n.t('female'), value: 'female' },
+			]}
+			label={i18n.t('gender')}
+				control={control}
+				name={UserKeys.Gender}
+				editable={isEditing}
 			/>
 			<ThemedTextInput
 				name={UserKeys.Height}

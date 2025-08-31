@@ -41,6 +41,6 @@ Join our community of developers creating universal apps.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 
 ## My TODO list
-- [] Create the selector or switcher for female-male
-- [] dropdown selector for the year of birth
-- [] Create the edit experience with a floating button or in the bar
+- [x] Create the selector or switcher for female-male
+- [ ] dropdown selector for the year of birth
+- [ ] Create the edit experience with a floating button or in the bar
