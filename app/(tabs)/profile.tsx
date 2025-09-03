@@ -137,6 +137,7 @@ const getNumericOptions = (min: number, max: number, step: number = 1) => {
 };
 
 type UserProfileForm = z.infer<typeof userProfileSchema>;
+const yearOptions = getNumericOptions(new Date().getFullYear() - 120, new Date().getFullYear());
 const heightOptions = getNumericOptions(height.min, height.max);
 const weightOptions = getNumericOptions(weight.min, weight.max);
 const waistOptions = getNumericOptions(waist.min, waist.max);
@@ -214,6 +215,14 @@ export default function ProfileTab() {
 				items={heightOptions}
 				placeholder={{label: i18n.t('enterHeight'), value: ''}}
 				label={i18n.t('height')}
+				editable={isEditing}
+				control={control}
+			/>
+			<ThemedDropdown
+				name={UserKeys.Year}
+				items={yearOptions}
+				placeholder={{label: i18n.t('enterYear'), value: ''}}
+				label={i18n.t('year')}
 				editable={isEditing}
 				control={control}
 			/>
