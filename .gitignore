@@ -39,3 +39,6 @@ yarn-error.*
 
 app-example
 .vscode/settings.json
+ios/yoursizes.xcodeproj/project.pbxproj
+android/app/src/main/res/values/styles.xml
+
