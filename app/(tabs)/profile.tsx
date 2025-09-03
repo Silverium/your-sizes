@@ -33,42 +33,122 @@ export enum UserKeys {
 	Inseam = 'inseam',
 }
 
+const height = {
+	min: 30,
+	max: 250,
+	default: 160,
+};
+const weight = {
+	min: 15,
+	max: 350,
+	default: 60,
+};
+const waist = {
+	min: 45,
+	max: 150,
+	default: 70,
+};
+const foot = {
+	min: 10,
+	max: 50,
+	default: 20,
+};
+const head = {
+	min: 40,
+	max: 65,
+	default: 54,
+};
+const hips = {
+	min: 40,
+	max: 300,
+	default: 95,
+};
+const chest = {
+	min: 30,
+	max: 200,
+	default: 85,
+};
+const sleeve = {
+	min: 10,
+	max: 100,
+	default: 55,
+};
+const shoulder = {
+	min: 10,
+	max: 60,
+	default: 40,
+};
+const thigh = {
+	min: 20,
+	max: 300,
+	default: 55,
+};
+const inseam = {
+	min: 15,
+	max: 150,
+	default: 75,
+};
+
 const userInitialState: UserProfileForm = {
 	name: '',
-	year: 1900,
+	year: new Date().getFullYear() - 25,
 	gender: 'female',
-	height: 0,
-	weight: 0,
-	waist: 0,
-	foot: 0,
-	head: 0,
-	hips: 0,
-	chest: 0,
-	sleeve: 0,
-	shoulder: 0,
-	thigh: 0,
-	inseam: 0,
+	height: height.default,
+	weight: weight.default,
+	waist: waist.default,
+	foot: foot.default,
+	head: head.default,
+	hips: hips.default,
+	chest: chest.default,
+	sleeve: sleeve.default,
+	shoulder: shoulder.default,
+	thigh: thigh.default,
+	inseam: inseam.default,
 };
+
 const userProfileSchema = z.object({
 	name: z.string()
 		.trim().nonempty({ error: i18n.t("fieldRequired") })
 		.min(1, { error: i18n.t('stringMinLength', { count: 1 }) }).max(50, { error: i18n.t('stringMaxLength', { count: 50 }) }),
 	year: z.coerce.number().min(1900).max(new Date().getFullYear()).optional().default(1900),
 	gender: z.enum(['female', 'male']).optional().default('female'),
-	height: z.coerce.number({ error: i18n.t('numberOnly') }).min(0).optional(),
-	weight: z.coerce.number({ error: i18n.t('numberOnly') }).min(0).optional(),
-	waist: z.coerce.number({ error: i18n.t('numberOnly') }).min(0).optional(),
-	foot: z.coerce.number({ error: i18n.t('numberOnly') }).min(0).optional(),
-	head: z.coerce.number({ error: i18n.t('numberOnly') }).min(0).optional(),
-	hips: z.coerce.number({ error: i18n.t('numberOnly') }).min(0).optional(),
-	chest: z.coerce.number({ error: i18n.t('numberOnly') }).min(0).optional(),
-	sleeve: z.coerce.number({ error: i18n.t('numberOnly') }).min(0).optional(),
-	shoulder: z.coerce.number({ error: i18n.t('numberOnly') }).min(0).optional(),
-	thigh: z.coerce.number({ error: i18n.t('numberOnly') }).min(0).optional(),
-	inseam: z.coerce.number({ error: i18n.t('numberOnly') }).min(0).optional(),
+	height: z.coerce.number({ error: i18n.t('numberOnly') }).min(height.min).max(height.max).default(height.default).optional(),
+	weight: z.coerce.number({ error: i18n.t('numberOnly') }).min(weight.min).max(weight.max).default(weight.default).optional(),
+	waist: z.coerce.number({ error: i18n.t('numberOnly') }).min(waist.min).max(waist.max).default(waist.default).optional(),
+	foot: z.coerce.number({ error: i18n.t('numberOnly') }).min(foot.min).max(foot.max).default(foot.default).optional(),
+	head: z.coerce.number({ error: i18n.t('numberOnly') }).min(head.min).max(head.max).default(head.default).optional(),
+	hips: z.coerce.number({ error: i18n.t('numberOnly') }).min(hips.min).max(hips.max).default(hips.default).optional(),
+	chest: z.coerce.number({ error: i18n.t('numberOnly') }).min(chest.min).max(chest.max).default(chest.default).optional(),
+	sleeve: z.coerce.number({ error: i18n.t('numberOnly') }).min(sleeve.min).max(sleeve.max).default(sleeve.default).optional(),
+	shoulder: z.coerce.number({ error: i18n.t('numberOnly') }).min(shoulder.min).max(shoulder.max).default(shoulder.default).optional(),
+	thigh: z.coerce.number({ error: i18n.t('numberOnly') }).min(thigh.min).max(thigh.max).default(thigh.default).optional(),
+	inseam: z.coerce.number({ error: i18n.t('numberOnly') }).min(inseam.min).max(inseam.max).default(inseam.default).optional(),
 }).required();
 
+const getNumericOptions = (min: number, max: number, step: number = 1) => {
+	return Array.from({ length: Math.floor((max - min) / step) + 1 }, (_, i) => {
+		const value = min + i * step;
+		return {
+			label: String(value),
+			value,
+			key: String(value),
+		};
+	});
+};
+
 type UserProfileForm = z.infer<typeof userProfileSchema>;
+const heightOptions = getNumericOptions(height.min, height.max);
+const weightOptions = getNumericOptions(weight.min, weight.max);
+const waistOptions = getNumericOptions(waist.min, waist.max);
+const footOptions = getNumericOptions(foot.min, foot.max, 0.5);
+const headOptions = getNumericOptions(head.min, head.max);
+const hipsOptions = getNumericOptions(hips.min, hips.max);
+const chestOptions = getNumericOptions(chest.min, chest.max);
+const sleeveOptions = getNumericOptions(sleeve.min, sleeve.max);
+const shoulderOptions = getNumericOptions(shoulder.min, shoulder.max);
+const thighOptions = getNumericOptions(thigh.min, thigh.max);
+const inseamOptions = getNumericOptions(inseam.min, inseam.max);
+
 export default function ProfileTab() {
 	const {
 		control,
@@ -129,104 +209,96 @@ export default function ProfileTab() {
 				name={UserKeys.Gender}
 				editable={isEditing}
 			/>
-			<ThemedTextInput
+			<ThemedDropdown
 				name={UserKeys.Height}
-				placeholder={i18n.t('enterHeight')}
+				items={heightOptions}
+				placeholder={{label: i18n.t('enterHeight'), value: ''}}
 				label={i18n.t('height')}
 				editable={isEditing}
 				control={control}
-				inputMode="numeric"
-				keyboardType="numeric"
 			/>
-			<ThemedTextInput
+
+			<ThemedDropdown
 				name={UserKeys.Weight}
-				placeholder={i18n.t('enterWeight')}
+				items={weightOptions}
+				placeholder={{label: i18n.t('enterWeight'), value: ''}}
 				label={i18n.t('weight')}
 				editable={isEditing}
 				control={control}
-				inputMode="numeric"
-				keyboardType="numeric"
 			/>
-			<ThemedTextInput
+			<ThemedDropdown
 				name={UserKeys.Waist}
-				placeholder={i18n.t('enterWaist')}
+				items={waistOptions}
+				placeholder={{label: i18n.t('enterWaist'), value: ''}}
 				label={i18n.t('waist')}
 				editable={isEditing}
 				control={control}
-				inputMode="numeric"
-				keyboardType="numeric"
 			/>
-			<ThemedTextInput
+			<ThemedDropdown
 				name={UserKeys.Foot}
-				placeholder={i18n.t('enterFoot')}
+				items={footOptions}
+				placeholder={{label: i18n.t('enterFoot'), value: ''}}
 				label={i18n.t('foot')}
 				editable={isEditing}
 				control={control}
-				inputMode="numeric"
-				keyboardType="numeric"
 			/>
-			<ThemedTextInput
+			<ThemedDropdown
 				name={UserKeys.Head}
-				placeholder={i18n.t('enterHead')}
+				items={headOptions}
+				placeholder={{label: i18n.t('enterHead'), value: ''}}
 				label={i18n.t('head')}
 				editable={isEditing}
 				control={control}
-				inputMode="numeric"
-				keyboardType="numeric"
 			/>
-			<ThemedTextInput
+			<ThemedDropdown
 				name={UserKeys.Hips}
-				placeholder={i18n.t('enterHips')}
+				items={hipsOptions}
+				placeholder={{label: i18n.t('enterHips'), value: ''}}
 				label={i18n.t('hips')}
 				editable={isEditing}
 				control={control}
-				inputMode="numeric"
-				keyboardType="numeric"
+
 			/>
-			<ThemedTextInput
+			<ThemedDropdown
 				name={UserKeys.Chest}
-				placeholder={i18n.t('enterChest')}
+				items={chestOptions}
+				placeholder={{label: i18n.t('enterChest'), value: ''}}
 				label={i18n.t('chest')}
 				editable={isEditing}
 				control={control}
-				inputMode="numeric"
-				keyboardType="numeric"
-			/>
-			<ThemedTextInput
+
+				/>
+			<ThemedDropdown
 				name={UserKeys.Sleeve}
-				placeholder={i18n.t('enterSleeve')}
+				items={sleeveOptions}
+				placeholder={{label: i18n.t('enterSleeve'), value: ''}}
 				label={i18n.t('sleeve')}
 				editable={isEditing}
 				control={control}
-				inputMode="numeric"
-				keyboardType="numeric"
 			/>
-			<ThemedTextInput
+			<ThemedDropdown
 				name={UserKeys.Shoulder}
-				placeholder={i18n.t('enterShoulder')}
+				items={shoulderOptions}
+				placeholder={{label: i18n.t('enterShoulder'), value: ''}}
 				label={i18n.t('shoulder')}
 				editable={isEditing}
 				control={control}
-				inputMode="numeric"
-				keyboardType="numeric"
 			/>
-			<ThemedTextInput
+			<ThemedDropdown
 				name={UserKeys.Thigh}
-				placeholder={i18n.t('enterThigh')}
+				items={thighOptions}
+				placeholder={{label: i18n.t('enterThigh'), value: ''}}
 				label={i18n.t('thigh')}
 				editable={isEditing}
 				control={control}
-				inputMode="numeric"
-				keyboardType="numeric"
 			/>
-			<ThemedTextInput
+			<ThemedDropdown
 				name={UserKeys.Inseam}
-				placeholder={i18n.t('enterInseam')}
+				items={inseamOptions}
+				placeholder={{label: i18n.t('enterInseam'), value: ''}}
 				label={i18n.t('inseam')}
 				editable={isEditing}
 				control={control}
-				inputMode="numeric"
-				keyboardType="numeric"
 			/>
 			<ThemedView style={styles.buttonsContainer}>
 				{isEditing ? (

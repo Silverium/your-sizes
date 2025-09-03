@@ -1,4 +1,4 @@
-
+/* cSpell:locale es,en */
 const es = {
 	// this is an example Translation, just rename or delete this folder if you want
 	HI: '¡Hola {name}! Por favor, deja una estrella si te gusta este proyecto',
@@ -14,6 +14,7 @@ const es = {
 	edit: 'Editar',
 	cancel: 'Cancelar',
 	name: 'Nombre',
+	year: 'Año de nacimiento',
 	height: 'Altura',
 	weight: 'Peso',
 	waist: 'Cintura',
@@ -25,6 +26,7 @@ const es = {
 	shoulder: 'Hombro',
 	thigh: 'Muslo',
 	inseam: 'Tiro',
+	enterYear: 'Introduce tu año de nacimiento',
 	enterHeight: 'Introduce tu altura',
 	enterWeight: 'Introduce tu peso',
 	enterWaist: 'Introduce tu cintura',
